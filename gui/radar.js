@@ -326,13 +326,15 @@ function radar_visualization(config) {
           .data(segmented[quadrant][ring])
           .enter()
             .append("a")
-              .attr("href", function (d, i) {
-                 return d.link ? d.link : "#"; // stay on same page if no link was provided
-              })
-              // Add a target if (and only if) there is a link and we want new tabs
-              .attr("target", function (d, i) {
-                 return (d.link && config.links_in_new_tabs) ? "_blank" : null;
-              })
+              .on("click", function(d) { offcanvas.toggle(); $("#markdown-container").html( htmlData[d.link]);  return false})
+              // .attr("href", function (d, i) {
+              //    return d.link ? d.link : "#"; // stay on same page if no link was provided
+              // })
+              // // Add a target if (and only if) there is a link and we want new tabs
+              // .attr("target", function (d, i) {
+              //    return (d.link && config.links_in_new_tabs) ? "_blank" : null;
+              // })
+
             .append("text")
               .attr("transform", function(d, i) { return legend_transform(quadrant, ring, i); })
               .attr("class", "legend" + quadrant + ring)
@@ -341,7 +343,7 @@ function radar_visualization(config) {
               .style("font-family", "Arial, Helvetica")
               .style("font-size", "11px")
               .on("mouseover", function(d) { showBubble(d); highlightLegendItem(d); })
-              .on("mouseout", function(d) { hideBubble(d); unhighlightLegendItem(d); });
+              .on("mouseout", function(d) { hideBubble(d); unhighlightLegendItem(d); })
       }
     }
   }

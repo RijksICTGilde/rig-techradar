@@ -12,8 +12,8 @@ complex e-commerce applications.
 ## Con
 
 ```
-"group": "programming language",
-"version": "8",
-"name": "PHP",
-"status": "HOLD" 
+group: "programming language"
+version: "8"
+name: "PHP"
+status: "HOLD"
 ```

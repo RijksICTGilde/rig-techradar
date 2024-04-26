@@ -10,9 +10,10 @@ focus on writing great software!
 ## Con
 
 ```
-"group": "build tool",
-"version": "3",
-"name": "Maven",
-"status": "ADOPT",
-"depends-on": "java.md"
+group: "build tool"
+version: "3"
+name: "Maven"
+status: "ADOPT"
+depends-on: "java.md"
+preceded-by: "java.md"
 ```

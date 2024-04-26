@@ -1,42 +1,75 @@
+import * as yaml from "https://cdn.skypack.dev/js-yaml";
+
+var md;
+window.onload = function () {
+    md = window.markdownit();
+}
+
+function drawDependencyFlow(technologies) {
+    var relations = [];
+    for (let technology of technologies) {
+        console.log(technology);
+        relations[technology["json"]["fileName"]] = technology["json"];
+    }
+    $('.workflow').empty();
+    $('.workflow').workflowChart({
+        data: [
+            {id: 1, title: 'Node 1', parent: null, optional: false},
+            {id: 2, title: 'Node 2', parent: 1, optional: false},
+            {id: 3, title: 'Node 3', parent: 2, optional: false, link: 'http://www.google.com'},
+            {id: 4, title: 'Node 4', parent: 2, optional: false, link: 'http://www.google.com'},
+            {id: 4, title: 'Node 4', parent: 2, optional: false, link: 'http://www.google.com'},
+            {id: 5, title: 'Node 5', parent: 4, optional: false, link: 'http://www.google.com'},
+            {id: 6, title: 'Node 6', parent: 5, optional: false, link: 'http://www.google.com'}
+        ]
+    })
+}
+
 function test() {
     $("#robbert").html("Dit is een test");
 
+    $("#markdown-container").on("click", function (e) {
+        jQuery(this).hide();
+    })
+
     var technologies = [];
 
-    $.get("/technologies.json", function (data) {
-        console.log(data);
+    // https://stackoverflow.com/questions/939032/jquery-pass-more-parameters-into-callback
+    $.get("/technologies.txt", function (data) {
         var promises = [];
-        for (fileName of data["files"]) {
-            var request = $.get("/technologies/" + fileName, function (mdData) {
-// ?                console.log(mdData);
-                // $("#robbert").html(marked.parse(mdData));
-
-                const regex = /```(.*?)```/gs;
-                const matches = [...mdData.matchAll(regex)];
-                // console.log("Matches: ");
-                // console.log(matches[0][1]);
-                // console.log("Codeblock");
-                const codeBlocks = "{" + matches[0][1].trim() + "}";
-                try {
-                    var myJSONBlock = $.parseJSON(codeBlocks);
-                    technologies.push(myJSONBlock);
-                    //console.log(myJSONBlock);
-                } catch (e) {
-                    console.error(codeBlocks);
-                    console.error(e);
+        var lines = data.split("\n").filter(function (el) {
+            return el != null && el !== "";
+        });
+        for (var fileName of lines) {
+            var request = $.get({
+                url: "/technologies/" + fileName,
+                type: "GET",
+                fileName: fileName,
+                complete: function (jqXHR,status) {
+                    let mdData = jqXHR.responseText;
+                    try {
+                        let regex = /```(.*?)```/gs;
+                        let matches = [...mdData.matchAll(regex)];
+                        let codeBlocks = matches[0][1].trim();
+                        let myJSONBlock = yaml.load(codeBlocks);
+                        myJSONBlock["fileName"] = this.fileName;
+                        technologies.push({"json": myJSONBlock, "html": md.render(mdData)});
+                    } catch (e) {
+                        console.error(mdData);
+                        console.error(e);
+                    }
                 }
-            })
+            });
             promises.push(request)
         }
-        $.when.apply(null, promises).done(function(){
-            console.log(technologies.length);
+        $.when.apply(null, promises).done(function () {
             drawRadar(technologies);
+            drawDependencyFlow(technologies);
         })
     });
 }
 
 $(function () {
-    console.log("ready please no cache!");
     test();
 });
 

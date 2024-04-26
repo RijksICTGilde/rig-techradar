@@ -23,17 +23,16 @@ development projects.
 * Cost: While Java itself is open-source, some enterprise-level Java tools or frameworks might have licensing costs associated with them.
 
 ```
-"group": "programming language",
-"version": "11",
-"name": "Java",
-"status": [
-      {
-        "version": "8",
-        "status": "DROP"
-      }, 
-      {
-        "version": "21",
-        "status": "ADOPT"
-      }
-    ]  
+---
+category: "language"
+group: "programming language"
+version: "11"
+name: "Java"
+status: 
+- version: "8"
+  status: "HOLD"
+- version: "11"
+  status: "HOLD"
+- version: "21"
+  status: "ADOPT"
 ```

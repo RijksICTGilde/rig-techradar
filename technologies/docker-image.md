@@ -10,9 +10,11 @@ extensive libraries, Python offers endless possibilities for both beginners and 
 ## Con
 
 ```
-group: "build tool"
-version: "3"
-name: "Python"
+group: "packaging"
+name: "Docker Image"
 status: "ADOPT"
-depends-on: "python.md"
+depends-on:
+ - "gradle.md"
+ - "maven.md"
+followed-by: 
 ```
