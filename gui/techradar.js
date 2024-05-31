@@ -14,13 +14,15 @@ function drawDependencyFlow(technologies) {
     $('.workflow').empty();
     $('.workflow').workflowChart({
         data: [
-            {id: 1, title: 'Node 1', parent: null, optional: false},
-            {id: 2, title: 'Node 2', parent: 1, optional: false},
-            {id: 3, title: 'Node 3', parent: 2, optional: false, link: 'http://www.google.com'},
-            {id: 4, title: 'Node 4', parent: 2, optional: false, link: 'http://www.google.com'},
-            {id: 4, title: 'Node 4', parent: 2, optional: false, link: 'http://www.google.com'},
-            {id: 5, title: 'Node 5', parent: 4, optional: false, link: 'http://www.google.com'},
-            {id: 6, title: 'Node 6', parent: 5, optional: false, link: 'http://www.google.com'}
+            {id: 1, title: 'Java (v21)', parent: null, optional: false},
+            {id: 2, title: 'Maven (3)', parent: 1, optional: false},
+            {id: 3, title: 'Jenkins', parent: 2, optional: true, link: 'http://www.google.com'},
+            {id: 4, title: 'GitLab', parent: 2, optional: true, link: 'http://www.google.com'},
+            {id: 5, title: 'GitHub', parent: 2, optional: true, link: 'http://www.google.com'},
+            {id: 6, title: 'Storage', parent: 5, optional: false, link: 'http://www.google.com'},
+            {id: 7, title: 'Artifact Storage', parent: 6, optional: false, link: 'http://www.google.com'},
+            {id: 8, title: 'Image Storage', parent: 6, optional: false, link: 'http://www.google.com'},
+            {id: 9, title: 'Kubernetes Deploymnent', parent: 7, optional: false, link: 'http://www.google.com'}
         ]
     })
 }
