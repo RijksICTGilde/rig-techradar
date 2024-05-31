@@ -1,0 +1,36 @@
+body {
+  font-family: 'Source Sans Pro', arial, helvetica, sans-serif;
+  padding-bottom: 50px;
+}
+h3 {
+  margin-top: 50px;
+}
+li {
+  margin: 25px 50px 0 0;
+}
+table {
+  width: 1400px;
+  margin: 0 50px 0 50px;
+}
+td {
+  width: 50%;
+  vertical-align: top;
+  padding-right: 60px;
+}
+
+#radar {
+  border: 1px solid black;
+  margin-top: 50px;
+}
+
+#markdown-container {
+  /*background-color: rgba(255,255,255,0.85);*/
+  /*padding: 10px;*/
+  /*border: 1px solid black;*/
+  /*position: absolute;*/
+  /*width: 500px;*/
+  /*height: 250px;*/
+  /*overflow-x: scroll;*/
+  /*top: 50%;*/
+  /*left: 20%;*/
+}
