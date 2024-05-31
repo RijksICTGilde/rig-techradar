@@ -27,6 +27,15 @@ function drawDependencyFlow(technologies) {
     })
 }
 
+function getPathPrefix() {
+    let pathPrefix = "/";
+    let urlPaths = location.pathname.split('/');
+    if (urlPaths.length >= 1 && urlPaths[1] === "rig-techradar") {
+        pathPrefix = "/rig-techradar/"
+    }
+    return pathPrefix;
+}
+
 function test() {
     $("#robbert").html("Dit is een test");
 
@@ -36,12 +45,8 @@ function test() {
 
     var technologies = [];
 
-    let pathPrefix = "/";
-    let urlPaths = location.pathname.split('/');
-    if (urlPaths.length >= 1 && urlPaths[1] === "rig-techradar") {
-        pathPrefix = "/rig-techradar/"
-    }
-    console.log(urlPaths[1]);
+
+    let pathPrefix = getPathPrefix();
 
     // https://stackoverflow.com/questions/939032/jquery-pass-more-parameters-into-callback
     $.get(pathPrefix + "technologies.txt", function (data) {
@@ -51,7 +56,7 @@ function test() {
         });
         for (var fileName of lines) {
             var request = $.get({
-                url: "/technologies/" + fileName,
+                url: getPathPrefix() + "/technologies/" + fileName,
                 type: "GET",
                 fileName: fileName,
                 complete: function (jqXHR,status) {
