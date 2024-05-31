@@ -8,7 +8,7 @@ window.onload = function () {
 function drawDependencyFlow(technologies) {
     var relations = [];
     for (let technology of technologies) {
-        console.log(technology);
+        // console.log(technology);
         relations[technology["json"]["fileName"]] = technology["json"];
     }
     $('.workflow').empty();
@@ -36,8 +36,15 @@ function test() {
 
     var technologies = [];
 
+    let pathPrefix = "/";
+    let urlPaths = location.pathname.split('/');
+    if (urlPaths.length >= 1 && urlPaths[1] === "rig-techradar") {
+        pathPrefix = "/rig-techradar/"
+    }
+    console.log(urlPaths[1]);
+
     // https://stackoverflow.com/questions/939032/jquery-pass-more-parameters-into-callback
-    $.get("/technologies.txt", function (data) {
+    $.get(pathPrefix + "technologies.txt", function (data) {
         var promises = [];
         var lines = data.split("\n").filter(function (el) {
             return el != null && el !== "";

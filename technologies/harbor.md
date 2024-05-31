@@ -8,6 +8,8 @@ Harbor is an open source registry that secures artifacts with policies and role-
 
 ```
 group: "container registry"
+"type": "containger registry"
+"stage": "deployment"
 name: "Harbor"
 status: "ADOPT"
 preceded-by: "docker-image.md"

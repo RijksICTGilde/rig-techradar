@@ -26,6 +26,8 @@ development projects.
 ---
 category: "language"
 group: "programming language"
+"type": "programming language"
+"stage": "development"
 version: "11"
 name: "Java"
 status: 
