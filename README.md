@@ -1,5 +1,7 @@
 # RIG Techradar
 
+[![Deployed Here](https://img.shields.io/badge/Deployed_Here-brightgreen)]([https://squidfunk.github.io/mkdocs-material/](https://minbzk.github.io/rig-techradar/))
+
 Bij de start van een nieuw project, rijst vaak de vraag welke software stack / technology stack
 gebruikt gaat worden. Soms ligt dit voor een deel al vast, bijvoorbeeld omdat een organisatie
 bepaalde eisen heeft of technieke heeft waar je op moet aansluiten.
@@ -18,7 +20,7 @@ Daarnaast is het plan om ook dit te doen:
   en (mogelijke) tools die kunnen helpen
 
 
-** Opzet
+## Opzet
 
 Het idee is om alle technologies in markdown bestanden te plaatsen in de folder markdown. Elk bestand
 bevat een json block met metadata. Denk hierbij aan het soort technologie en de plek op de radar.
