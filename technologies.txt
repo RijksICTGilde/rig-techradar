@@ -8,3 +8,4 @@ maven.md
 php.md
 poetry.md
 python.md
+fastapi.md
