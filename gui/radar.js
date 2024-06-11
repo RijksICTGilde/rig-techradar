@@ -326,7 +326,7 @@ function radar_visualization(config) {
           .data(segmented[quadrant][ring])
           .enter()
             .append("a")
-              .on("click", function(d) { offcanvas.toggle(); $("#markdown-container").html( htmlData[d.link]);  return false})
+              .on("click", function(d) { offcanvas.toggle(); $("#markdown-container").html( htmlData[d.link]); return false})
               // .attr("href", function (d, i) {
               //    return d.link ? d.link : "#"; // stay on same page if no link was provided
               // })
@@ -423,14 +423,16 @@ function radar_visualization(config) {
     var blip = d3.select(this);
 
     // blip link
-    if (d.active && Object.prototype.hasOwnProperty.call(d, "link") && d.link) {
-      blip = blip.append("a")
-        .attr("xlink:href", d.link);
+    blip.on("click", function(d) { offcanvas.toggle(); $("#markdown-container").html( htmlData[d.link]); return false})
 
-      if (config.links_in_new_tabs) {
-        blip.attr("target", "_blank");
-      }
-    }
+    // if (d.active && Object.prototype.hasOwnProperty.call(d, "link") && d.link) {
+    //   blip = blip.append("a")
+    //     .attr("xlink:href", d.link + "lalala");
+    //
+    //   if (config.links_in_new_tabs) {
+    //     blip.attr("target", "_blank");
+    //   }
+    // }
 
     // blip shape
     if (d.moved > 0) {
