@@ -1,6 +1,6 @@
 # RIG Techradar
 
-[![Deployed Here](https://img.shields.io/badge/Deployed_Here-brightgreen)]([https://squidfunk.github.io/mkdocs-material/](https://minbzk.github.io/rig-techradar/))
+[![Deployed Here](https://img.shields.io/badge/Deployed_Here-brightgreen)](https://minbzk.github.io/rig-techradar/)
 
 Bij de start van een nieuw project, rijst vaak de vraag welke software stack / technology stack
 gebruikt gaat worden. Soms ligt dit voor een deel al vast, bijvoorbeeld omdat een organisatie
