@@ -49,7 +49,7 @@ function test() {
     let pathPrefix = getPathPrefix();
 
     // https://stackoverflow.com/questions/939032/jquery-pass-more-parameters-into-callback
-    $.get(pathPrefix + "/technologies.txt", function (data) {
+    $.get(pathPrefix + "technologies.txt", function (data) {
         var promises = [];
         var lines = data.split("\n").filter(function (el) {
             return el != null && el !== "";
