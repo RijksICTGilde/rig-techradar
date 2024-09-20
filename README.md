@@ -25,6 +25,13 @@ Daarnaast is het plan om ook dit te doen:
 Het idee is om alle technologies in markdown bestanden te plaatsen in de folder markdown. Elk bestand
 bevat een json block met metadata. Denk hierbij aan het soort technologie en de plek op de radar.
 
+## Metadata
+
+De metadata bevat o.a. de plek op de radar, maar ook waar in het software proces de technologie voorkomt,
+of en wat de relaties zijn met andere componenten etc.
+
+## Voorlopig opzet
+
 Het is verder een javascript/html oplossing. Nadeel nu is dat handmatig de bestanden uit de technologies
 map moet worden toegevoegd aan het technologies.json document, aangezien er geen backend is om dit
 te automatiseren.

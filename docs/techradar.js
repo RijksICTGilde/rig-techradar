@@ -39,9 +39,9 @@ function getPathPrefix() {
 function test() {
     $("#robbert").html("Dit is een test");
 
-    $("#markdown-container").on("click", function (e) {
-        jQuery(this).hide();
-    })
+    // $("#markdown-container").on("click", function (e) {
+    //     jQuery(this).hide();
+    // })
 
     var technologies = [];
 
@@ -55,28 +55,36 @@ function test() {
             return el != null && el !== "";
         });
         for (var fileName of lines) {
-            var request = $.get({
-                url: getPathPrefix() + "/technologies/" + fileName,
-                type: "GET",
-                fileName: fileName,
-                complete: function (jqXHR,status) {
-                    let mdData = jqXHR.responseText;
-                    try {
-                        let regex = /```(.*?)```/gs;
-                        let matches = [...mdData.matchAll(regex)];
-                        let codeBlocks = matches[0][1].trim();
-                        let myJSONBlock = yaml.load(codeBlocks);
-                        myJSONBlock["fileName"] = this.fileName;
-                        technologies.push({"json": myJSONBlock, "html": md.render(mdData)});
-                    } catch (e) {
-                        console.error(mdData);
-                        console.error(e);
+            var request = new Promise((resolve, reject) => {
+                $.get({
+                    url: getPathPrefix() + "/technologies/" + fileName,
+                    type: "GET",
+                    fileName: fileName,
+                    complete: function (jqXHR, status) {
+                        let mdData = jqXHR.responseText;
+                        try {
+                            let regex = /```(.*?)```/gs;
+                            let matches = [...mdData.matchAll(regex)];
+                            let codeBlocks = matches[0][1].trim();
+                            let myJSONBlock = yaml.load(codeBlocks);
+                            mdData = mdData.replaceAll(regex, "")
+                            myJSONBlock["fileName"] = this.fileName;
+                            technologies.push({"json": myJSONBlock, "html": md.render(mdData)});
+                            console.log("Loaded " + this.fileName)
+                            resolve();
+                        } catch (e) {
+                            console.error(mdData);
+                            console.error(e);
+                        }
                     }
-                }
+                });
             });
             promises.push(request)
+            console.log("Promise added for " + fileName);
         }
         $.when.apply(null, promises).done(function () {
+            console.log(promises)
+            console.log("All promises are done")
             drawRadar(technologies);
             drawDependencyFlow(technologies);
         })

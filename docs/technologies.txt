@@ -9,3 +9,4 @@ php.md
 poetry.md
 python.md
 fastapi.md
+sqlmodel.md
