@@ -16,5 +16,6 @@ status:
 - version: "3"
   status: "ADOPT"
 - version: "2"
-  status: "HOLD"
+  status: "DROP"
+  explanation: "Python 2 is Obsolete. It is no longer supported. Please use v3 instead"
 ```

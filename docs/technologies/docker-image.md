@@ -7,6 +7,7 @@ Docker leverages operating system-level virtualization, specifically containeriz
 ## Con
 
 ```
+process: code,create,test,release,deploy,operate
 group: "packaging"
 name: "Docker Image"
 status: "ADOPT"

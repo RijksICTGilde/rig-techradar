@@ -13,7 +13,7 @@ For information about the project, see the Jib project README.
 category: "build tools"
 group: "build"
 version: "11"
-name: "Java"
+name: "Jib"
 status: 
 - version: "8"
   status: "HOLD"
